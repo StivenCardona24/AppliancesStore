@@ -69,6 +69,11 @@ body{
     cursor: pointer;
 }
 
+#products .card-body{
+    display: flex;
+    justify-content: space-between;
+}
+
 #products .card-body p{
     text-align: justify;
 }
