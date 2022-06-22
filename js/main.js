@@ -4,9 +4,9 @@ var app = new Vue({
     appliances:[
       {
                 id: 1,
-                img: 'images/aparato-electrico.png',
+                img: 'images/tv1.png',
                 name: 'SAMSUNG',
-                categorie: 'TV',
+                category: 'TV',
                 desc: `Television Samsung 60'' UHD 4k, smartTv`,
                 descmodal: `Television Samsung 60'' UHD 4k, smartTv `,
                 price: 4500000,
@@ -17,9 +17,9 @@ var app = new Vue({
       },
       {
         id: 2,
-        img: 'images/aparato-electrico.png',
+        img: 'images/tv2.png',
         name: 'LG',
-        categorie: 'TV',
+        category: 'TV',
         desc: `Television LG 50'' OLED 4k, smartTv, LG`,
         descmodal: ` Television LG 50'' OLED 4k, smartTv, LG`,
         price: 3300000,
@@ -30,9 +30,9 @@ var app = new Vue({
       },
        {
                 id: 3,
-                img: 'images/aparato-electrico.png',
+                img: 'images/fridge1.png',
                 name: 'MABE',
-                categorie: 'FRIDGE',
+                category: 'FRIDGE',
                 desc: `Fridge MABE No Frost 313 Lts. Brutos RMA300FJCG`,
                 descmodal: `Fridge MABE No Frost 313 Lts. Brutos RMA300FJCG `,
                 price: 1500000,
@@ -43,22 +43,22 @@ var app = new Vue({
       },
       {
         id: 4,
-        img: 'images/aparato-electrico.png',
+        img: 'images/fridge2.png',
         name: 'SAMSUNG',
-        categorie: 'FRIDGE',
+        category: 'FRIDGE',
         desc: `Fridge No Frost SAMSUNG European 307 Lts RB30N4160B`,
         descmodal: `Fridge No Frost SAMSUNG European 307 Lts RB30N4160B`,
         price: 2500000,
         idm: 4,
         modal_id: 'pd4',
         modalw: '#pd4',
-        order_amount: 1,
+        order_amount: 1
       },
       {
         id: 5,
-        img: 'images/aparato-electrico.png',
+        img: 'images/fryer2.png',
         name: 'IMUSA',
-        categorie: 'FRYER',
+        category: 'FRYER',
         desc: `Imusa Air Fryer Without Oil Easy Fry 4.2 Liters EZ201D56`,
         descmodal: `Imusa Air Fryer Without Oil Easy Fry 4.2 Liters EZ201D56 `,
         price: 440000,
@@ -69,9 +69,9 @@ var app = new Vue({
 },
 {
 id: 6,
-img: 'images/aparato-electrico.png',
+img: 'images/fryer1.png',
 name: 'OSTER',
-categorie: 'FRYER',
+category: 'FRYER',
 desc: `OSTER 4.7Lt Digital Air Fryer 2120712`,
 descmodal: `OSTER 4.7Lt Digital Air Fryer 2120712`,
 price: 755000,
@@ -83,9 +83,9 @@ order_amount: 1,
 
 {
   id: 7,
-  img: 'images/aparato-electrico.png',
+  img: 'images/lavadora1.png', //'https://exitocol.vtexassets.com/arquivos/ids/12717830-500-auto?v=637873779341170000&width=500&height=auto&aspect=true',
   name: 'WHIRLPOOL',
-  categorie: 'WASHING',
+  category: 'WASHING',
   desc: `WHIRLPOOL Top Load Washer 19 kg (42 lb) WW19BTAHLA`,
   descmodal: `WHIRLPOOL Top Load Washer 19 kg (42 lb) WW19BTAHLA`,
   price: 1940000,
@@ -96,9 +96,9 @@ order_amount: 1,
 },
 {
 id: 8,
-img: 'images/aparato-electrico.png',
+img: 'images/lavadora2.png',
 name: 'LG',
-categorie: 'WASHING',
+category: 'WASHING',
 desc: `LG Washing Machine Top Load 13 kg (29 lb) WT13BSBP.ABMECOL`,
 descmodal: `LG Washing Machine Top Load 13 kg (29 lb) WT13BSBP.ABMECOL`,
 price: 1790000,
@@ -117,7 +117,7 @@ order_amount: 1,
     totalCart: 0,
     //variables below
     fcartN: '',
-    categorie: "Categorie",
+    category: "categories",
     
     
   },
@@ -184,14 +184,19 @@ order_amount: 1,
 
   searchFor(){
 
-    if(this.categorie == "all" || this.categorie == "Categorie"){
+    if(this.category == "all" || this.category == "categories"){
       
       this.products = this.appliances;
     }
     else{
-      this.products = this.appliances.filter(item => item.categorie == this.categorie);
+      this.products = this.appliances.filter(item => item.category == this.category);
+      
      
     }
+
+    window.location.href = "#products"
+
+    
 
     
   },

@@ -32,8 +32,9 @@
                             </li>
                             
                             <li class="nav-item">
-                              <select class="form-select" aria-label="Default select example" v-model="categorie" @click="searchFor">
-                                    <option value="Categorie">Categorie</option>
+                            
+                              <select class="form-select" aria-label="Default select example" v-model="category" @change="searchFor">
+                                    <option value="categories">Categories</option>
                                     <option value="all">All</option>
                                     <option value="TV">Televisions</option>
                                     <option value="FRIDGE">Fridge</option>
@@ -43,6 +44,7 @@
                                     <option value="WASHING">
                                         Washing machines</option>
                                   </select>
+                                  
                             </li>
                     
                             <li class="nav-item">
