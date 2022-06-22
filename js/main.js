@@ -117,7 +117,7 @@ order_amount: 1,
     totalCart: 0,
     //variables below
     fcartN: '',
-    categorie: "",
+    categorie: "Categorie",
     
     
   },
@@ -184,7 +184,7 @@ order_amount: 1,
 
   searchFor(){
 
-    if(this.categorie == "all" || this.categorie == ""){
+    if(this.categorie == "all" || this.categorie == "Categorie"){
       
       this.products = this.appliances;
     }
