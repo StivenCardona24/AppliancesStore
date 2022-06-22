@@ -20,11 +20,11 @@ body{
 }
 
 #navbar a{
-    color: #E29D16;
+    color: #1697e2;
 }
 
 #navbar a:hover{
-    color: #e1cc09;
+    color: #094de1;
 }
 
 #floating-cart-btn .btn-container a{
@@ -32,7 +32,7 @@ body{
     padding: 8px;
     padding-right: 40px;
     background-color: #000;
-    color: #E29D16;
+    color: #1697e2;
     width: 40px;
     height: 40px;
     border-radius: 15px;
@@ -45,19 +45,19 @@ body{
 }
 
 #products .menu-title{
-    color: #E29D16;
+    color: #1697e2;
 }
 
 #products hr{
-    color: #E29D16;
+    color: #1697e2;
 }
 
 #products .card{
-    background-color: #E29D16;
+    background-color: #1697e2;
 }
 
 #products .card:hover{
-    box-shadow: 0 0 20px #E29D16;
+    box-shadow: 0 0 20px #1697e2;
 }
 
 #products .card span{
@@ -127,7 +127,7 @@ body{
 }
 
 #modals .modal-body{
-    background-color: #E29D16;
+    background-color: #1697e2;
     border: none;
 }
 
@@ -136,7 +136,7 @@ body{
 }
 
 #modals .modal-header button{
-    color: #E29D16;
+    color: #1697e2;
 }
 
 #modals .modal-header .modal-title{
@@ -247,7 +247,7 @@ body{
 }
 
 #carrito tbody img:hover{
-    border: 2px solid #E29D16;
+    border: 2px solid #1697e2;
 }
 
 #carrito tbody td{
@@ -266,7 +266,7 @@ body{
 }
 
 #pago tbody img:hover{
-    border: 2px solid #E29D16;
+    border: 2px solid #1697e2;
 }
 
 #pago tbody td{
@@ -283,7 +283,7 @@ body{
 
 #footer a, h6 {
     text-decoration: none;
-    color: #E29D16;
+    color: #1697e2;
 }
 
 #footer h6 i{
@@ -291,7 +291,7 @@ body{
 }
 
 #footer a{
-    color: #E29D16;
+    color: #1697e2;
 }
 
 #footer a:hover{
