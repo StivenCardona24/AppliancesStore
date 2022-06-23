@@ -96,7 +96,7 @@ var app = new Vue({
       },
       {
         id: 8,
-        img: 'images/lavadora2.png',
+        img: 'images/Lavadora2.png',
         name: 'LG',
         category: 'WASHING',
         desc: `LG Washing Machine Top Load 13 kg (29 lb) WT13BSBP.ABMECOL`,
