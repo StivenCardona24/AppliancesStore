@@ -354,11 +354,12 @@ var app = new Vue({
       }
       else {
         this.products = this.appliances.filter(item => item.category == this.category);
+        window.location.href = "#products"
 
 
       }
 
-      window.location.href = "#products"
+      
 
 
 
