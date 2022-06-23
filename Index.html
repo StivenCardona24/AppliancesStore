@@ -14,6 +14,7 @@
 <body >
 
     <div id="app" >
+
         <header class="sticky-top">
             <nav id="navbar" class="navbar navbar-expand-lg bg-dark navbar-dark ">
                 <div class="container">
@@ -27,9 +28,7 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-                            </li>
+                            
                             
                             <li class="nav-item">
                             
@@ -46,13 +45,27 @@
                                   </select>
                                   
                             </li>
-                    
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#" data-bs-toggle="modal" data-bs-target="#login">Login</a>
+                                <a class="nav-link active" aria-current="page" href="#main">Home</a>
                             </li>
+                    
+                            
+                            
                             <li class="nav-item">
                                 <a @click="cartClick" class="nav-link text-highlightedd" href="#" data-bs-toggle="modal" data-bs-target="#carrito">Cart <i class="fas fa-shopping-cart"></i></a>
                             </li>
+                            <li class="nav-item" v-if="client == ''">
+                                <a class="nav-link active" aria-current="page" href="#" data-bs-toggle="modal" data-bs-target="#login" id="log" >Login</a>
+                            </li>
+
+                            <li class="nav-item" v-if="client != ''">
+                                <a class="nav-link active" aria-current="page" href="#" data-bs-toggle="modal" data-bs-target="#method" id="add" >Add Payment</a>
+                            </li>
+
+                            <li class="nav-item" v-if="client != ''">
+                                <button @click="logout" type="button" class="btn btn-dark logout">Logout <i class="fa-solid fa-right-from-bracket"></i></button>
+                            </li>
+                            
                         </ul>
                     </div>
                 </div>
@@ -100,7 +113,7 @@
      <section id="floating-cart-btn">
         <div class="btn-container fixed-bottom">
             <div class="cart-float-btn">
-                <a @click="cartClick" href="#" class="floating-cart text-center" data-bs-toggle="modal" data-bs-target="#carrito"><i class="fas fa-shopping-cart"></i>  <strong v-text="fcartN" class="text-danger"></strong></a>
+                <a @click="cartClick" href="#" class="floating-cart text-center" data-bs-toggle="modal" data-bs-target="#carrito"><i class="fas fa-shopping-cart">&nbsp;<span v-text="fcartN" class="text-danger"></span></i></span></a>
             </div>
         </div>
     </section>
@@ -146,7 +159,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <img :src="item.img" class="card-img-top" alt="hd4">
-                                        <h4>Descripción:</h4>
+                                        <h4>Description:</h4>
                                         <p v-text="item.descmodal"></p>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text bg-dark"><button @click="minusbtn(item)" type="button" class="btn btn-dark"><i class="fas fa-minus"></i></button></span>
@@ -155,7 +168,7 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button @click="addToCart(item)" type="button"><strong>AGREGRAR</strong></button>
+                                        <button @click="addToCart(item)" type="button"><strong>ADD</strong></button>
                                     </div>
                                 </div>
                             </div>
@@ -172,6 +185,210 @@
     </section>
     <!-- /products -->
 
+     <!-- Modals -->
+     <section id="modals"> 
+                
+        <!--Modal login-->
+        <div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <button @click="closelogin" type="button" class="btn btn-dark" data-bs-dismiss="modal" aria-label="Close" id="close"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="sigIn-formulario text-center" >
+                            <h1 class="sigIn-title mb-3">Appliances Store</h1>
+                            <img src="images/aparato-electrico.png" alt="Icono" class="sigIn-Icon ">
+                            <div class="form-floating mb-4">
+                                <input v-model="usser" @keyup.enter="login" type="text"  class="form-control" id="floatingUser" required>
+                                <label for="floatingUser">USSER</label>
+                            </div>
+                            <div class="form-floating mb-4">
+                                <input v-model="password" @keyup.enter="login" type="password" maxlength="8" minlength="8" class="form-control" id="floatingPassword" required>
+                                <label for="floatingPassword">PASSWORD</label>
+                                <span v-if="logspan === 1"><strong class="text-danger">WRONG  USSER AND/OR PASSWORD </strong></span>
+                                <span v-if="logspan === 2"><strong class="text-danger">PLEASE ENTER A USERNAME AND PASSWORD</strong></span>
+                            </div>
+                        </div>
+                    </div>
+                  
+                    <div class="modal-footer">
+                        <button @click="login" type="button" v-if="modaltrigger === 0"><strong>LOG IN</strong></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Modal login -->
+
+        <!-- Modal Carrito -->
+        <div class="modal fade" id="carrito" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h5 class="modal-title text-center" id="exampleModalLabel">Cart</h5>
+                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div class="modal-body">
+                        <h4>Tu Pedido:</h4>
+                        <div class="table-responsive">
+                            <table class="table table-dark table-hover">
+                                <thead class="text-center">
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Name</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
+                                        <th>Remove</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-center"  v-if="cart.length">
+                                    <tr v-for="(item, index) in cart">
+                                        <td><img :src="item.img" alt="product"></td>
+                                        <td v-text="item.name"></td>
+                                        <td v-text="item.order_amount"></td>
+                                        <td v-text="item.price"></td>
+                                        <td><button @click="delFromCart(index)" class="btn btn-danger"><i class="fas fa-backspace"></i></button></td>   
+                                    </tr>
+                                </tbody>
+                                <tbody v-else>
+                                    <td colspan="5" class="text-center">There are no products added</td>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <h4 class="text-center"><strong>TOTAL:</strong> <span><strong v-text="totalCart">$0.000</strong></span></h4>
+                        <div v-if="ward" id="payment">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="cash" v-model="payment">
+                            <label class="form-check-label" for="inlineRadio1"><img src="images/efecty.png" alt=""></label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Card" v-model="payment">
+                        <label class="form-check-label" for="inlineRadio2"><img src="images/card.png" alt=""></label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="Api" v-model="payment">
+                            <label class="form-check-label" for="inlineRadio3"><img src="images/api.png" alt=""></label>
+                            </div>
+                    </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button"  @click="pay" v-if="!ward"><strong>Go Pay</strong></button>
+                        <button type="button"  @click="buy" v-if="ward"><strong>BUY</strong></button>
+                        <button @click="cancel" type="button" class="cancel" v-if="cart.length > 0"><strong>Cancel</strong></button>
+                        <button type="button" class="cancel" data-bs-dismiss="modal" aria-label="Close" v-else><strong>Cancel</strong></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Modal Carrito -->
+
+
+          <!--Modal Payment-->
+          <div class="modal fade" id="method" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <button  type="button" class="btn btn-dark" data-bs-dismiss="modal" aria-label="Close" id="close"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="sigIn-formulario text-center justify-content-center" >
+                            <h1 class="sigIn-title mb-3">Payment Method</h1>
+                            <div id="payment" class="mb-3">
+                                <!-- <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="cash" v-model="payment">
+                                    <label class="form-check-label" for="inlineRadio1"><img src="images/efecty.png" alt=""></label>
+                                </div> -->
+                                <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Card" v-model="payment">
+                                <label class="form-check-label" for="inlineRadio2"><img src="images/card.png" alt=""></label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="Api" v-model="payment">
+                                    <label class="form-check-label" for="inlineRadio3"><img src="images/api.png" alt=""></label>
+                                    </div>
+                            </div>
+
+                            
+                            
+                                <select class="form-select form-floating mb-4 w-75 m-auto" aria-label="Default select example" v-model="nameCard" v-if="payment == 'Card'">
+                                    <option value='' selected>Name</option>
+                                    <option value="Visa">Visa</option>
+                                    <option value="Mastercard">Mastercard</option>
+                   
+                                </select>
+                                <select class="form-select form-floating mb-4 w-75 m-auto"  aria-label="Default select example" v-model="nameCard" v-if="payment == 'Api'">
+                                    <option value='' selected>Name</option>
+                                    <option value="Nequi">Nequi</option>
+                                    <option value="Daviplata">Daviplata</option>
+                                </select>
+                            
+                            
+
+                            <div class="form-floating mb-4 w-75 m-auto h-25  " v-if="payment != ''" >
+                                <input v-model.number="numberCard" @keyup.enter="login" type="number"  class="form-control" id="floatingUser" placeholder=" Account Number" required>
+                                <label for="floatingUser">
+                                    Account Number</label>
+                            </div>
+
+                            <!-- <div class="form-floating mb-4">
+                                <input v-model="password" @keyup.enter="login" type="password" maxlength="8" minlength="8" class="form-control" id="floatingPassword" required>
+                                <label for="floatingPassword">CONTRASEÑA</label>
+                                <span v-if="logspan === 1"><strong class="text-danger">USUARIO Y O CONTRASEÑA INCORRECTOS</strong></span>
+                                <span v-if="logspan === 2"><strong class="text-danger">POR FAVOR INGRESE UN USUARIO Y CONTRASEÑA</strong></span>
+                            </div> -->
+                        </div>
+                    </div>
+                  
+                    <div class="modal-footer">
+                        <button @click="save" type="button" ><strong>Save</strong></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Modal login -->
+
+        
+
+
+
+
+
+</section>
+<!-- /Modals -->
+
+
+
+    
+            <!-- FOOTER -->
+            <footer id="footer" class="pb-4 pt-4">
+                <div class="container">
+                    <div class="row text-center">
+                        <div class="col-12 col-lg col-md">
+                            <a href="#">
+                                Frequent Questions</a>
+                        </div>
+                        <div class="col-12 col-lg col-md">
+                            <a href="#">
+                                Contact Us</a>
+                        </div>
+                        <div class="col-12 col-lg col-md">
+                            <a href="#">News
+                            </a>
+                        </div>
+                        <div class="col-12 col-lg col-md">
+                            <a href="#">Privacy</a>
+                        </div>
+                        <div class="col-12 col-lg col-md">
+                            <a href="#">Products</a>
+                        </div>
+                        
+                    </div>
+                    <h6 class="text-center mt-4">© Copyright - All rights reserved</h6>
+                    <h6 class="text-center mt-4">Appliances Store</h6>
+                </div>
+            </footer>
+            <!-- /FOOTER -->
 
 </div>
     

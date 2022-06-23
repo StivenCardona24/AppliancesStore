@@ -19,11 +19,24 @@ body{
     color: #fff;
 }
 
+#navbar select{
+    background-color: #aeb1b3;
+    color: #191919;
+}
+
 #navbar a{
     color: #04bef7;
 }
 
 #navbar a:hover{
+    color: #0084ff;
+}
+
+#navbar .logout{
+    color: #04bef7;
+}
+
+#navbar .logout:hover{
     color: #0084ff;
 }
 
@@ -36,6 +49,11 @@ body{
     width: 40px;
     height: 40px;
     border-radius: 15px;
+}
+
+#floating-cart-btn  .cart-float-btn{
+    display: inline-flex;
+    flex-direction: row;
 }
 
 #floating-cart-btn .btn-container a:hover{
@@ -122,11 +140,15 @@ body{
 }
 
 #login .modal-body{
-    color: #e4e3e3;
+    color: #ffffff;
     display:flex;
     flex-direction: column;
     justify-content: space-evenly;
     
+}
+
+#login img{
+    width: 150px;
 }
 
 #modals .modal-content{
@@ -134,7 +156,7 @@ body{
 }
 
 #modals .modal-body{
-    color: #e4e3e3;
+    color: #ffffff;
     background-color: #154360;
     border: none;
 }
@@ -143,8 +165,12 @@ body{
     text-align: justify;
 }
 
+#modals .modal-body label{
+    color: #202020;
+}
+
 #modals .modal-header button{
-    color: #154360;
+    color: #04bef7;
 }
 
 #modals .modal-header .modal-title{
@@ -179,10 +205,10 @@ body{
 
 #modals .modal-footer button:hover{
     background-image: url("../images/buy-btn-hover.png");
-    color: #000;
+    color: #04bef7;
 }
 
-#modals .modal-footer .cancel{
+/* #modals .modal-footer .cancel{
     margin: auto;
     background-image: url("../images/cancel-btn.png");
     background-color: transparent;
@@ -190,14 +216,14 @@ body{
     padding: 14px 80px 14px 75px;
     background-repeat: no-repeat;
     cursor: pointer;
-    color: #000;
+    color: #fff;
     transition: 0.5s all ease;
 }
 
 #modals .modal-footer .cancel:hover{
     background-image: url("../images/cancel-btn-hover.png");
     color: #fff;
-}
+} */
 
 #modals .modal-footer .back{
     margin: auto;
@@ -249,6 +275,14 @@ body{
     font-weight: bold;
 }
 
+#payment{
+    text-align: center;
+}
+
+#payment img{
+    width: 80px;
+}
+
 #carrito tbody img{
     width: 40px;
     height: 40px;
@@ -291,7 +325,7 @@ body{
 
 #footer a, h6 {
     text-decoration: none;
-    color: #154360;
+    color: #04bef7;
 }
 
 #footer h6 i{
@@ -299,11 +333,11 @@ body{
 }
 
 #footer a{
-    color: #154360;
+    color: #04bef7;
 }
 
 #footer a:hover{
-    color: #e1cc09;
+    color: #0084ff;
 }
 
 
