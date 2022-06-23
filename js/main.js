@@ -200,7 +200,7 @@ var app = new Vue({
       this.clients.forEach(element => {
 
         if (this.usser == element.usser && this.password == element.password) {
-          alert("Bienvenido");
+          alert("Welcome!");
           this.client = element;
          
 
